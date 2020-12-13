@@ -1,0 +1,15 @@
+{
+  "name": "jaeger-node",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node store-api.js"
+  },
+  "author": "https://github.com/llimacruz",
+  "license": "ISC",
+  "dependencies": {
+    "chance": "^1.1.7",
+    "jaeger-client": "^3.18.1",
+    "kafkajs": "^1.15.0"
+  }
+}
