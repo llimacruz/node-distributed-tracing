@@ -4,7 +4,7 @@ const tracingUtil = require("./lib/tracing-util.js");
 const kafkaUtil = require("./lib/kafka-util.js");
 const chance = new Chance();
 
-const topicName = 'orders-1';
+const topicName = 't_orders';
 const tracer = tracingUtil.init("store");
 
 const createOrder = async () => {
@@ -25,15 +25,11 @@ const createOrder = async () => {
       orderId,
       spanData: tracingUtil.buildSpanData(localSpan)
     });
-    // await kafkaUtil.disconnect(producer);
-    // tracer.close(() => process.exit());
+    await kafkaUtil.disconnect(producer);
+    tracer.close(() => process.exit());
   } catch (ex) {
     console.error('Error', ex)
   }
 };
 
-// createOrder();
-
-setInterval(() => {
-  createOrder();
-}, 1000);
+createOrder();

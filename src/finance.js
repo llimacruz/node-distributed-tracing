@@ -4,14 +4,14 @@ const tracingUtil = require("./lib/tracing-util.js");
 const kafkaUtil = require("./lib/kafka-util.js");
 const chance = new Chance();
 
-const topicName = 'receipts';
+const topicName = 't_receipts';
 const tracer = tracingUtil.init("finance");
 
 (async () => {
   try {
     // initialize Kafka consumer
     const kafka = new Kafka({ clientId: 'finance', brokers: ['localhost:9092'] });
-    const consumer = await kafkaUtil.subscribeTopics(kafka, 'finance', ['orders-1']);
+    const consumer = await kafkaUtil.subscribeTopics(kafka, 'finance', ['t_orders']);
 
     await consumer.run({
       eachMessage: async ({ message }) => {
